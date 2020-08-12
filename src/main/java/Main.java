@@ -1,41 +1,65 @@
+import models.Book;
+import models.Librarian;
+import models.Library;
+import models.Person;
+import utils.Queueing;
+
+/**
+ * The program is run here. Firstly, we instantiate the Library, the Librarian,
+ * and then the Queueing.
+ */
+
 public class Main {
     public static void main(String[] args) {
+
         Library library = new Library();
-            Teacher teacher1 = new Teacher("TeacherIkebobo");
-            Teacher teacher2 = new Teacher("TeacherMorlimoore");
+        Librarian librarian = new Librarian();
+        Queueing queueing = new Queueing();
 
-            Student studentSenior1 = new Student("IkeboboSenior1", "senior");
-            Student studentSenior2 = new Student("IkeboboSenior2", "senior");
+        //Create the Person objects: Teacher, Senior students and Junior students.
+        Person teacher = new Person("Teacher Ike bobo", "teacher");
+        Person teacher2 = new Person("Teacher Kaito", "teacher");
+        Person teacher3 = new Person("Teacher Zurum", "teacher");
+        Person studentSenior = new Person("Senior Std Ike", "senior_student");
+        Person studentSenior2 = new Person("Senior Std Chi", "senior_student");
+        Person studentJunior = new Person("Junior Std Ike", "junior_student");
+        Person studentJunior2 = new Person("Junior Std Buike", "junior_student");
 
-            Student studentJunior1 = new Student("IkeboboJunior1", "junior");
-            Student studentJunior2 = new Student("IkeboboJunior2", "junior");
+        //Create the Book objects.
+        Book book1 = new Book("Intro to Java", "Prof. Ikebobo", 50);
+        Book book2 = new Book("Understanding OOP", "Engr. Morlimoore", 35);
+        Book book3 = new Book("Algorithms", "Prof. Ikebobo", 90);
+        Book book4 = new Book("Algorithms", "Prof. Victor", 90);
+        Book book5 = new Book("Greatness", "Ikenna", 30);
 
-            Book book1 = new Book("Intro to Java", "Prof. Ikebobo", 50);
-            Book book2 = new Book("Understanding OOP", "Engr. Morlimoore", 35);
-            Book book3 = new Book("Algorithms", "Prof. Ikebobo", 90);
+        //Use the librarian to add the created books to the Library (Catalogue).
+        librarian.addBookToLibrary(book1, 60);
+        librarian.addBookToLibrary(book2, 2);
+        librarian.addBookToLibrary(book3, 5);
+//        librarian.addBookToLibrary(book4, 5);
 
+        library.viewCatalogue();
+//        library.getTotalNoOfBooksInCatalogue();
+        library.getTotalNoOfBooksInCatalogue();
 
-            library.addBookToCatalogue(book1, 5);
-            library.addBookToCatalogue(book2, 4);
-            library.addBookToCatalogue(book3, 9);
+        //The person looks through the catalogue, selects his/her choice of book to be borrowed,
+        //and stands in queue with the book. Processing is First Come First Serve, priority processing
+        // is triggered when a teacher requests for the same book as a student.
+        queueing.standInQueue(studentJunior, book1);
+//        queueing.standInQueue(studentSenior, book2);
+//        queueing.standInQueue(teacher, book3);
+        queueing.standInQueue(studentJunior, book1);
+        queueing.standInQueue(teacher, book2);
+//        queueing.standInQueue(teacher3, book1);
 
-            library.getTotalNoOfBooksInCatalogue();
+        //It is the job of the Librarian to process the borrowing requests
+        librarian.processBorrowingRequests();
 
-            library.viewCatalogue();
+        library.getTotalNoOfBooksInCatalogue();
 
-            studentJunior1.seekToLendBook("Understanding OOP");
-            studentSenior1.seekToLendBook("Understanding OOP");
-            teacher1.seekToLendBook("Understanding OOP");
-//            studentSenior2.seekToLendBook("Science of Magic");
+        //A person can return any book to the library
+        teacher.returnBookToLibrary(book2);
 
-//            library.processLendingRequest1();
-
-            library.processLendingRequest2();
-
-            library.getTotalNoOfBooksInCatalogue();
-
-            library.viewCatalogue();
-
-
+        library.getTotalNoOfBooksInCatalogue();
     }
 }
