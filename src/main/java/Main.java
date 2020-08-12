@@ -9,6 +9,14 @@ import utils.Queueing;
  * and then the Queueing.
  */
 
+/**
+ About JUnit tests:
+
+ Tests may fail when run all together from the classpath. This is a result
+ of the static modifier used for the collections shared amongst all the classes.
+ Prefer unit testing (method testing) over general tests.
+ */
+
 public class Main {
     public static void main(String[] args) {
 

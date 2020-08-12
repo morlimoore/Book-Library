@@ -38,7 +38,7 @@ public class Library {
         libraryUtils.returnBook(bookId, book);
     }
 
-    public Map<String, Map<Book, Integer>> getCatalogue2() {
+    public Map<String, Map<Book, Integer>> getCatalogue() {
         return libraryUtils.getCatalogue();
     }
 

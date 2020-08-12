@@ -2,10 +2,9 @@ package models;
 
 public class Person implements Comparable<Person> {
 
-    private String id;
     private String name;
     private String status;
-    private String idOfBookToLend;
+    private String idOfBookToBorrow;
     private Library library = new Library();
 
     private enum Designation{
@@ -47,12 +46,12 @@ public class Person implements Comparable<Person> {
         return status;
     }
 
-    public String getIdOfBookToLend() {
-        return idOfBookToLend;
+    public String getIdOfBookToBorrow() {
+        return idOfBookToBorrow;
     }
 
-    public void setIdOfBookToLend(String idOfBookToLend) {
-        this.idOfBookToLend = idOfBookToLend;
+    public void setIdOfBookToBorrow(String idOfBookToBorrow) {
+        this.idOfBookToBorrow = idOfBookToBorrow;
     }
 
     @Override

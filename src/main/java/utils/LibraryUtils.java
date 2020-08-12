@@ -44,14 +44,15 @@ public class LibraryUtils {
     /**
      * Prints total number of books in the Library (Catalogue).
      */
-    public void getTotalNoOfBooksInCatalogue() {
+    public int getTotalNoOfBooksInCatalogue() {
         int totalNoOfBooks = 0;
         for (Map.Entry<String, Map<Book, Integer>> entry : catalogue.entrySet()) {
             for (Map.Entry<Book, Integer> entry2 : entry.getValue().entrySet()) {
                 totalNoOfBooks += entry2.getValue();
             }
         }
-        System.out.println("Total number of books in the library is: " + totalNoOfBooks + "\n");
+//        System.out.println("Total number of books in the library is: " + totalNoOfBooks + "\n");
+        return totalNoOfBooks;
     }
 
     /**

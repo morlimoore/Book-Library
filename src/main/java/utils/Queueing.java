@@ -25,7 +25,7 @@ public class Queueing {
      * @param bookToLend
      */
     public void standInQueue(Person person, Book bookToLend) {
-        person.setIdOfBookToLend(bookToLend.getId());
+        person.setIdOfBookToBorrow(bookToLend.getId());
         joinNormalLendingQueue(person);
         joinPriorityLendingQueue(person);
         priority.determinePriority(person, bookToLend);
@@ -78,24 +78,24 @@ public class Queueing {
                 if (person == null)
                     return;
                 else {
-                    if (person.getIdOfBookToLend() == null || !library.getCatalogue2().containsKey(
-                            person.getIdOfBookToLend())) {
+                    if (person.getIdOfBookToBorrow() == null || !library.getCatalogue().containsKey(
+                            person.getIdOfBookToBorrow())) {
                         System.out.println(person.getName() + " => Book taken" + "\n");
                         continue;
                     }
                     int value = 0;
-                    for (Integer i : library.getCatalogue2().get(person.getIdOfBookToLend()).values()) {
+                    for (Integer i : library.getCatalogue().get(person.getIdOfBookToBorrow()).values()) {
                         value = i;
                     }
                     Book tempBook = new Book();
-                    for (Book b : library.getCatalogue2().get(person.getIdOfBookToLend()).keySet()) {
+                    for (Book b : library.getCatalogue().get(person.getIdOfBookToBorrow()).keySet()) {
                         tempBook = b;
                     }
                     Map<Book, Integer> tempMap = Map.of(tempBook, --value);
-                    library.getCatalogue2().replace(person.getIdOfBookToLend(), tempMap);
+                    library.getCatalogue().replace(person.getIdOfBookToBorrow(), tempMap);
                     System.out.println(tempBook.getTitle() + " has been lent to " + person.getName() + "\n");
                     if (value < 1)
-                        library.getCatalogue2().remove(person.getIdOfBookToLend());
+                        library.getCatalogue().remove(person.getIdOfBookToBorrow());
                 }
             }
         } catch (Exception e) {
